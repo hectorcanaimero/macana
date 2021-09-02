@@ -7,6 +7,7 @@ import { ACCESS_ROUTE } from './access.routes';
 import {CardModule} from 'primeng/card';
 import {ButtonModule} from 'primeng/button';
 import {InputTextModule} from 'primeng/inputtext';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -19,7 +20,9 @@ import {InputTextModule} from 'primeng/inputtext';
     CommonModule,
     CardModule,
     ButtonModule,
+    FormsModule,
     InputTextModule,
+    ReactiveFormsModule,
   ]
 })
 export class AccessModule { }

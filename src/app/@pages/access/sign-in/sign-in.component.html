@@ -5,24 +5,29 @@
         <div class="col-md-5 col-lg-4"></div>
         <div class="col-md-5 col-lg-4">
           <p-card>
-            <div class="mb-2">
-              <span class="p-float-label">
-                <input id="email" type="email" pInputText>
-                <label for="email">E-mail</label>
-              </span>
-            </div>
-            <div class="mb-3">
-              <span class="p-float-label">
-                <input id="password" type="password" pInputText>
-                <label for="password">Senha</label>
-              </span>
-            </div>
-            <div class="mb-2">
-              <button pButton type="button" label="Acessar" class="w-100"></button>
-            </div>
-            <div class="text-center">
-              <button pButton type="button" label="Esqueci minha senha" class="p-button-text"></button>
-            </div>
+            <form [formGroup]="isRecovery ? formRecovery : formLogin">
+              <div class="mb-3">
+                <input id="email" type="email" placeholder="E-mail" pInputText formControlName="email">
+              </div>
+              <div class="mb-3">
+                <input id="password" type="password" placeholder="Senha" pInputText
+                  formControlName="password">
+              </div>
+              <div class="mb-2">
+                <button pButton type="button" class="w-100" (click)="submit()">
+                  <p class="text-center mb-0 w-100">
+                    {{isRecovery ? 'Recuperar': 'Acessar'}}
+                  </p>
+                </button>
+              </div>
+              <div class="text-center">
+                <button pButton type="button" class="p-button-text" (click)="recoveryPassword()">
+                  <p class="text-center mb-0 w-100">
+                    {{isRecovery ? 'Voltar': 'Esqueci minha senha'}}
+                  </p>
+                </button>
+              </div>
+            </form>
           </p-card>
         </div>
       </div>

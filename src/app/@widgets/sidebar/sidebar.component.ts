@@ -29,7 +29,7 @@ export class SidebarComponent implements OnInit {
             routerLink: '/pages/encurtador/dash'
           },
           {
-            label: 'Todos',
+            label: 'Relatorio',
             icon: 'pi pi-fw pi-table',
             routerLink: '/pages/encurtador/todos'
           }
@@ -42,12 +42,17 @@ export class SidebarComponent implements OnInit {
           {
             label: 'Home',
             icon: 'pi pi-fw pi-home',
-            routerLink: '/access/signIn'
+            routerLink: ''
           },
           {
-            label: 'Todos',
+            label: 'Campanhas',
             icon: 'pi pi-fw pi-table',
-            routerLink: '/access/signIn'
+            routerLink: ''
+          },
+          {
+            label: 'Relatorio',
+            icon: 'pi pi-fw pi-table',
+            routerLink: ''
           }
         ]
       },
@@ -63,6 +68,16 @@ export class SidebarComponent implements OnInit {
           {
             label: 'Ver',
             icon: 'pi pi-fw pi-eye',
+            routerLink: '/access/signIn'
+          },
+          {
+            label: 'Favoritos',
+            icon: 'pi pi-fw pi-star',
+            routerLink: '/access/signIn'
+          },
+          {
+            label: 'Mercadologico Web',
+            icon: 'pi pi-fw pi-book',
             routerLink: '/access/signIn'
           }
         ]
