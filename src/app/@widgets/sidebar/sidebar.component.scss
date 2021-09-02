@@ -1,0 +1,17 @@
+section {
+  padding-top: 60px;
+  position: relative;
+  height: 100vh;
+  .logo {
+    text-align: center;
+    padding: 1rem 3rem;
+  }
+  .copyright {
+    position: absolute;
+    bottom: 0;
+    color: #fafafa;
+    width: 100%;
+    text-align: center;
+    font-size: .8rem;
+  }
+}

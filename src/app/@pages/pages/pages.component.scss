@@ -1,0 +1,24 @@
+main {
+  position: relative;
+  overflow: none;
+  .section {
+    padding-top: 0px;
+    z-index: -1;
+    width: 100vw;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    background-color: #fafafa;
+    .sidebar{
+      background-color: #525252;
+      min-height: 100vh;
+      width: 18%;
+    }
+    .painel {
+      padding: 60px 1rem 0rem 2rem;
+      width: 80%;
+      height: 100vh;
+    }
+  }
+}

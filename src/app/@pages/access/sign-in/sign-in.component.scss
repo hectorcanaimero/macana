@@ -1,0 +1,14 @@
+section {
+  .auth {
+    background-color: #fafafa;
+    min-height: 100vh;
+    display: flex;
+    flex: row;
+    justify-content: center;
+    align-items: center;
+    .card {
+      background-color: #fafafa;
+      padding: 2rem;
+    }
+  }
+}
