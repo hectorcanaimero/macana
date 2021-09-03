@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-module-encurtador',
+  selector: 'app-module-aplicativo',
   template: '<router-outlet></router-outlet>'
 })
-export class EncurtadorComponent { }
+export class AplicativoComponent { }

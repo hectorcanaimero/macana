@@ -30,7 +30,7 @@ export class SidebarComponent implements OnInit {
           },
           {
             label: 'Relatorio',
-            icon: 'pi pi-fw pi-table',
+            icon: 'pi pi-fw pi-chart-bar',
             routerLink: '/pages/encurtador/todos'
           }
         ]
@@ -51,7 +51,7 @@ export class SidebarComponent implements OnInit {
           },
           {
             label: 'Relatorio',
-            icon: 'pi pi-fw pi-table',
+            icon: 'pi pi-fw pi-chart-bar',
             routerLink: ''
           }
         ]
@@ -61,12 +61,17 @@ export class SidebarComponent implements OnInit {
         icon: 'pi pi-pw pi-shopping-cart',
         items: [
           {
-            label: 'Dash',
-            icon: 'pi pi-fw pi-chart-bar',
-            routerLink: '/access/signIn'
+            label: 'Home',
+            icon: 'pi pi-fw pi-home',
+            routerLink: '/pages/produtos/dash'
           },
           {
-            label: 'Ver',
+            label: 'Campanhas',
+            icon: 'pi pi-fw pi-ticket',
+            routerLink: '/pages/produtos/campanhas'
+          },
+          {
+            label: 'Produtos',
             icon: 'pi pi-fw pi-eye',
             routerLink: '/access/signIn'
           },
@@ -79,6 +84,27 @@ export class SidebarComponent implements OnInit {
             label: 'Mercadologico Web',
             icon: 'pi pi-fw pi-book',
             routerLink: '/access/signIn'
+          },
+          {
+            label: 'Mercadologico Web',
+            icon: 'pi pi-fw pi-book',
+            routerLink: '/access/signIn'
+          }
+        ]
+      },
+      {
+        label: 'Aplicativo',
+        icon: 'pi pi-pw pi-mobile',
+        items: [
+          {
+            label: 'Home',
+            icon: 'pi pi-fw pi-home',
+            routerLink: '/pages/aplicativo/dash'
+          },
+          {
+            label: 'Relatorio',
+            icon: 'pi pi-fw pi-chart-bar',
+            routerLink: '/pages/aplicativo/relatorio'
           }
         ]
       }

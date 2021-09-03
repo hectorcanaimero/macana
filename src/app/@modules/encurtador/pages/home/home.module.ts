@@ -1,13 +1,17 @@
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+
 import { HomeComponent } from './home.component';
 
-import {ChartModule} from 'primeng/chart';
 import {CardModule} from 'primeng/card';
-import {InputTextModule} from 'primeng/inputtext';
+import {ChartModule} from 'primeng/chart';
+import {TableModule} from 'primeng/table';
 import {ButtonModule} from 'primeng/button';
-
+import {InputTextModule} from 'primeng/inputtext';
+import {ConfirmPopupModule} from 'primeng/confirmpopup';
+import {ProgressSpinnerModule} from 'primeng/progressspinner';
 
 const app: Routes = [
   { path: '', component: HomeComponent }
@@ -21,8 +25,12 @@ const app: Routes = [
     CommonModule,
     CardModule,
     ChartModule,
+    TableModule,
     ButtonModule,
     InputTextModule,
+    ConfirmPopupModule,
+    ReactiveFormsModule,
+    ProgressSpinnerModule,
     RouterModule.forChild(app)
   ]
 })

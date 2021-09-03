@@ -12,6 +12,10 @@ const app: Routes = [
       {
         path: 'encurtador',
         loadChildren: () => import('@modules/encurtador/encurtador.module').then(m => m.EncurtadorModule)
+      },
+      {
+        path: 'produtos',
+        loadChildren: () => import('@modules/produtos/produtos.module').then(m => m.ProdutosModule)
       }
     ]
   }

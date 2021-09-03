@@ -8,3 +8,51 @@ input[type=text], input[type=password], input[type=email] {
   height: 5rem !important;
   font-size: 2rem !important;
 }
+
+.p-menubar {
+  background: #1f2d40 !important;
+  border: 1px solid #304562 !important;
+  .p-button, .p-button-text, .p-button-plain {
+    color: #fafafa !important;
+  }
+  .p-menuitem {
+    .p-menuitem-link .p-menuitem-icon, .p-menuitem-text {
+      color: #fafafa !important;
+    }
+  }
+}
+
+.p-panelmenu {
+  .p-panelmenu-header, .p-highlight {
+    a {
+      border: 1px solid #304562 !important;
+      background: #16202e !important;
+      color: #fafafa !important;
+      &:focus {
+        box-shadow: 0 0 0 0.2rem #304562 !important;
+      }
+    }
+  }
+  .p-panelmenu-content {
+    border: 1px solid #304562 !important;
+    background: #1f2d40 !important;
+    color: #fafafa !important;
+    .p-menuitem {
+      .p-menuitem-link {
+        .p-menuitem-icon, .p-menuitem-text{
+          color: #fafafa !important;
+        }
+        &:focus {
+          background: #16202e !important;
+          box-shadow: 0 0 0 0.2rem #304562 !important;
+        }
+        &:hover {
+          background: #16202e !important;
+        }
+      }
+    }
+  }
+}
+
+.f-8, .f-08 { font-size: .8rem !important; }
+.f-, .f-09 { font-size: .9rem !important; }

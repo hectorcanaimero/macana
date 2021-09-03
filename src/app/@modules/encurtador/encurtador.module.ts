@@ -6,9 +6,7 @@ import { ENCURTADOR_ROUTE } from './encurtador.routes';
 
 
 @NgModule({
-  declarations: [
-    EncurtadorComponent
-  ],
+  declarations: [ EncurtadorComponent ],
   imports: [
     CommonModule,
     ENCURTADOR_ROUTE,
