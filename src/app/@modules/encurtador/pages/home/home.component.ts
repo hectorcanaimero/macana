@@ -41,7 +41,6 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.loadForm();
     this.items$ = this.encurtadorService.getUrls();
-    this.items$.subscribe((res) => console.log(res));
     this.basicData = {
       labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho'],
       datasets: [
@@ -56,9 +55,14 @@ export class HomeComponent implements OnInit {
     const value = this.formUrl.value;
     if (this.proccess) {
       this.proccess = false;
-      this.encurtadorService.updateUrl(value.id, value).subscribe((res) => res);
+      this.encurtadorService.updateUrl(value.id, value).subscribe((res) => {
+        this.items$ = this.encurtadorService.getUrls().pipe(finalize(() => this.proccess = false));
+      });
     } else {
-      this.encurtadorService.createUrl(value).subscribe((res) => this.url = res.shorty);
+      this.encurtadorService.createUrl(value).subscribe((res) => {
+        this.url = res.shorty
+        this.items$ = this.encurtadorService.getUrls().pipe(finalize(() => this.proccess = false));
+      });
     }
     this.items$ = this.encurtadorService.getUrls().pipe(finalize(() => this.proccess = false));
     this.isLoading = false;
@@ -80,8 +84,8 @@ export class HomeComponent implements OnInit {
   }
 
   loadForm = () => this.formUrl = this.fb.group({ 'url': ['', [Validators.required]], 'shorty': [''], 'id': [''] });
+
   clear = (table: Table) => table.clear();
-  applyFilterGlobal = (event: any, stringVal: string) => {
-    this.dt.filterGlobal((event.target as HTMLInputElement).value, stringVal);
-  }
+
+  applyFilterGlobal = (event: any, stringVal: string) => this.dt.filterGlobal((event.target as HTMLInputElement).value, stringVal);
 }

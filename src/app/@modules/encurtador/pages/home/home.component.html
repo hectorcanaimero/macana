@@ -23,8 +23,8 @@
         </form>
         <div class="url mt-4" *ngIf="!isLoading; else loading">
           <p class="text" *ngIf="url">
-            <a href="https://cndr.me/{{ url }}">https://cndr.me/{{ url }}</a>
-            <span class="float-right">
+            <a href="https://cndr.me/{{ url }}" target="_blank">https://cndr.me/{{ url }}</a>
+            <span class="float-right mx-1">
               <i class="pi pi-paperclip"></i>
             </span>
           </p>
