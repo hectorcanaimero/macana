@@ -1,0 +1,11 @@
+<p-menubar [model]="items">
+  <ng-template pTemplate="start">
+    <img src="https://www.condor.com.br/assets/images/logo.svg" height="30" class="ms-3 p-me-2">
+  </ng-template>
+  <ng-template pTemplate="end">
+    <div class="me-5">
+      <button (click)="signOut()" type="button" pButton label="" icon="pi pi-power-off" class="p-button p-button-raised p-button-rounded p-button-link"
+        style="margin-left:.25em"></button>
+    </div>
+  </ng-template>
+</p-menubar>

@@ -4,7 +4,6 @@ section {
   height: 100vh;
   .logo {
     text-align: center;
-    padding: 1rem 3rem;
   }
   .copyright {
     position: absolute;
@@ -13,5 +12,11 @@ section {
     width: 100%;
     text-align: center;
     font-size: .8rem;
+  }
+  .all {
+    padding: 1rem 3rem;
+  }
+  .short {
+    padding: 1rem 1rem;
   }
 }
