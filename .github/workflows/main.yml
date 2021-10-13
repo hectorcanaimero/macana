@@ -25,10 +25,10 @@ jobs:
         id: upload
         uses: Creepios/sftp-action@v1.0.1
         with:
-          host: ${{ secrets.FTP_HOST }}
+          host: '173.230.137.242'
           port: 2299
-          username: ${{ secrets.FTP_USER }}
-          password: ${{ secrets.FTP_PASSWORD }}
+          username: 'root'
+          password: '@@Condor123#@!'
           localPath: './dist/painel/'
           remotePath: '/var/www/html/cndr/painel/'
 
