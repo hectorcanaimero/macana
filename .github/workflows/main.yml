@@ -14,5 +14,5 @@ jobs:
         port: 2299
         username: 'root'
         password: '@@Condor123#@!'
-        localPath: './dist/painel/'
+        localPath: '../../dist/painel'
         remotePath: '/var/www/html/cndr/painel/'
