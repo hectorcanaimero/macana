@@ -5,6 +5,8 @@ import { CommonModule } from '@angular/common';
 
 import { HomeComponent } from './home.component';
 
+import { ClipboardModule } from 'ngx-clipboard';
+
 import {CardModule} from 'primeng/card';
 import {ChartModule} from 'primeng/chart';
 import {TableModule} from 'primeng/table';
@@ -28,6 +30,7 @@ const app: Routes = [
     TableModule,
     ButtonModule,
     InputTextModule,
+    ClipboardModule,
     ConfirmPopupModule,
     ReactiveFormsModule,
     ProgressSpinnerModule,

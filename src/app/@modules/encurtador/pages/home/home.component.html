@@ -25,7 +25,8 @@
           <p class="text" *ngIf="url">
             <a href="https://cndr.me/{{ url }}" target="_blank">https://cndr.me/{{ url }}</a>
             <span class="float-right mx-1">
-              <i class="pi pi-paperclip"></i>
+              <i class="pi pi-paperclip pointer" (click)="copyText()"></i>
+              <span class="ms-2"><small style="font-style: italic; color: #A0A0A0">{{ clip }}</small></span>
             </span>
           </p>
         </div>
@@ -76,15 +77,17 @@
             <ng-template pTemplate="body" let-item>
               <tr class="f-09">
                 <td>{{item.url}}</td>
-                <td class="text-center">
+                <td class="text-right">
                   <a href="https://cndr.me/{{item.shorty}}" target="_blank">
-                    {{item.shorty}}
+                    https://cndr.me/{{item.shorty}}
                     <i class="ms-1 pi pi-check-square" style="font-size: 12px"></i>
                   </a>
                 </td>
                 <td class="text-center">{{item.createdAt | date: 'd-M-Y HH:mm'}}</td>
                 <td class="text-center">{{item.count}}</td>
                 <td class="text-center">
+                  <button pButton type="button" icon="pi pi-paperclip" (click)="copyText2(item.shorty)"
+                    class="p-button-text p-button-info"></button>
                   <button pButton type="button" icon="pi pi-copy" class="p-button-text p-button-secondary" (click)="editURL(item)"></button>
                   <button pButton type="button" (click)="deleteUrl(item.shorty)" icon="pi pi-trash" class="p-button-text p-button-danger"></button>
                 </td>

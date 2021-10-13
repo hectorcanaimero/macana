@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Table } from 'primeng/table';
 import {ConfirmationService} from 'primeng/api';
 import { ScrollToService, ScrollToConfigOptions } from '@nicky-lenaers/ngx-scroll-to';
+import { ClipboardService } from 'ngx-clipboard'
 
 import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
@@ -30,9 +31,11 @@ export class HomeComponent implements OnInit {
   formUrl: FormGroup;
   items$: Observable<any>;
   public list: string[] = [];
+  clip: string = '';
 
   constructor(
     private fb: FormBuilder,
+    private clipboardApi: ClipboardService,
     private scrollToService: ScrollToService,
     private encurtadorService: EncurtadorService,
     private confirmationService: ConfirmationService,
@@ -81,6 +84,16 @@ export class HomeComponent implements OnInit {
   reverseButton = () => {
     this.proccess = false;
     this.formUrl.reset();
+  }
+
+  copyText = () => {
+    this.clip = 'copiado';
+    this.clipboardApi.copyFromContent(`https://cndr.me/${this.url}`);
+  }
+
+  copyText2 = (shorty?: string) => {
+    this.clipboardApi.copyFromContent(`https://cndr.me/${shorty}`);
+    this.clip = 'copiado';
   }
 
   loadForm = () => this.formUrl = this.fb.group({ 'url': ['', [Validators.required]], 'shorty': [''], 'id': [''] });
