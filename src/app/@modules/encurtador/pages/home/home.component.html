@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div id="url" class="container-fluid">
   <div class="row mb-4">
     <div class="col-md-6">
       <p-card header="Criar URL">
@@ -6,17 +6,23 @@
           <div class="mb-2">
             <input type="url" placeholder="Url" class="w-100" pInputText formControlName="url">
           </div>
-          <div class="row">
+          <div class="row g-1">
             <div class="col-6">
               <input type="text" placeholder="Short" pInputText formControlName="shorty">
             </div>
-            <div class="col-6">
+            <div class="col-6" *ngIf="!proccess">
               <button pButton type="button" class="w-100" (click)="createUrl()" label="Criar"></button>
+            </div>
+            <div class="col-4" *ngIf="proccess">
+              <button pButton type="button" class="w-100 p-button-help" (click)="createUrl()" label="Atualizar"></button>
+            </div>
+            <div class="col-2" *ngIf="proccess">
+              <button pButton type="button" class="w-100 p-button-warning" (click)="reverseButton()" icon="pi pi-arrow-left" iconPos="left"></button>
             </div>
           </div>
         </form>
         <div class="url mt-4" *ngIf="!isLoading; else loading">
-          <p class="text">
+          <p class="text" *ngIf="url">
             <a href="https://cndr.me/{{ url }}">https://cndr.me/{{ url }}</a>
             <span class="float-right">
               <i class="pi pi-paperclip"></i>
@@ -35,37 +41,52 @@
     <div class="col-md-12">
       <p-card header="Listagem">
         <ng-container *ngIf="items$ | async as data">
-          <p-table #dt1 [value]="data" [paginator]="true" [rows]="10" [showCurrentPageReport]="true" responsiveLayout="scroll"
+          <p-table #dt [value]="data" [paginator]="true" [rowHover]="true" [rows]="10" [showCurrentPageReport]="true"
+            responsiveLayout="scroll"
             currentPageReportTemplate="{first} a {last} de {totalRecords} entradas" [rowsPerPageOptions]="[10,25,50]"
             [globalFilterFields]="['url','shorty','createdAt']">
-            <!-- <ng-template pTemplate="caption">
-              <div class="p-d-flex">
-                <button pButton label="Clear" class="p-button-outlined" icon="pi pi-filter-slash" (click)="clear(dt1)"></button>
+            <ng-template pTemplate="caption">
+              <div class="w-100">
+                <div class="row justify-content-end">
+                  <div class="col-lg-12 col-xl-6">
+                    <span class="p-input-icon-left me-2 w-75">
+                      <i class="pi pi-search"></i>
+                      <input pInputText type="text" (input)="applyFilterGlobal($event, 'contains')"  placeholder="Pesquisar" />
+                    </span>
+                    <button pButton label="Limpar" class="p-button-outlined" icon="pi pi-filter-slash" (click)="clear(dt)"></button>
+                  </div>
+                </div>
+              </div>
+              <!-- <div class="p-d-flex">
                 <span class="p-input-icon-left p-ml-auto">
                   <i class="pi pi-search"></i>
-                  <input pInputText type="text" (input)="dt1.filterGlobal($event.target.value, 'contains')" placeholder="Pesquisar" />
+                  <input pInputText type="text" (input)="applyFilterGlobal($event, 'contains')"  placeholder="Pesquisar" />
                 </span>
-              </div>
-            </ng-template> -->
+              </div> -->
+            </ng-template>
             <ng-template pTemplate="header">
               <tr>
                 <th>URL</th>
                 <th class="text-center">SHORT</th>
                 <th class="text-center" pSortableColumn="createdAt">CRIADO<p-sortIcon field="createdAt"></p-sortIcon></th>
-                <th class="text-center" pSortableColumn="count">COUNT<p-sortIcon field="count"></p-sortIcon></th>
+                <th class="text-center" pSortableColumn="count">CLIQUE<p-sortIcon field="count"></p-sortIcon></th>
                 <th></th>
               </tr>
             </ng-template>
             <ng-template pTemplate="body" let-item>
               <tr class="f-09">
                 <td>{{item.url}}</td>
-                <td class="text-center">{{item.shorty}}</td>
+                <td class="text-center">
+                  <a href="https://cndr.me/{{item.shorty}}" target="_blank">
+                    {{item.shorty}}
+                    <i class="ms-1 pi pi-check-square" style="font-size: 12px"></i>
+                  </a>
+                </td>
                 <td class="text-center">{{item.createdAt | date: 'd-M-Y HH:mm'}}</td>
                 <td class="text-center">{{item.count}}</td>
                 <td class="text-center">
-                  <button pButton type="button" icon="pi pi-copy" class="p-button-text p-button-secondary"></button>
-                  <p-confirmPopup></p-confirmPopup>
-                  <button pButton type="button" (click)="deleteUrl($event, item.shorty)" icon="pi pi-trash" class="p-button-text p-button-danger"></button>
+                  <button pButton type="button" icon="pi pi-copy" class="p-button-text p-button-secondary" (click)="editURL(item)"></button>
+                  <button pButton type="button" (click)="deleteUrl(item.shorty)" icon="pi pi-trash" class="p-button-text p-button-danger"></button>
                 </td>
               </tr>
             </ng-template>

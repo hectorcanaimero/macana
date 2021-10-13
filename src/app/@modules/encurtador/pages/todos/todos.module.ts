@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TodosComponent } from './todos.component';
 import { RouterModule, Routes } from '@angular/router';
+import { LottieModule } from 'ngx-lottie';
 
 const app: Routes = [
   { path: '', component: TodosComponent }
@@ -13,6 +14,7 @@ const app: Routes = [
   ],
   imports: [
     CommonModule,
+    LottieModule,
     RouterModule.forChild(app)
 
   ]

@@ -1,77 +1,87 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import {ConfirmationService} from 'primeng/api';
-import { Observable } from 'rxjs';
-import { EncurtadorService } from '@modules/encurtador/services/encurtador.service';
+
 import { Table } from 'primeng/table';
-import { v4 as uuid } from 'uuid';
+import {ConfirmationService} from 'primeng/api';
+import { ScrollToService, ScrollToConfigOptions } from '@nicky-lenaers/ngx-scroll-to';
+
+import { Observable } from 'rxjs';
+import { finalize } from 'rxjs/operators';
+
+import { EncurtadorService } from '@modules/encurtador/services/encurtador.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
+
 export class HomeComponent implements OnInit {
 
+  @ViewChild('dt') dt: Table;
+  loading: boolean = true;
+  proccess: boolean = false;
   isLoading: boolean = false;
+
+  url: string;
   basicData: any;
   basicOptions: any;
-  url: string;
-  items$: Observable<any>;
-  formUrl: FormGroup;
 
+  formUrl: FormGroup;
+  items$: Observable<any>;
   public list: string[] = [];
 
   constructor(
     private fb: FormBuilder,
+    private scrollToService: ScrollToService,
     private encurtadorService: EncurtadorService,
     private confirmationService: ConfirmationService,
   ) { }
 
   ngOnInit(): void {
-    console.log(uuid().slice(0,4));
     this.loadForm();
     this.items$ = this.encurtadorService.getUrls();
     this.items$.subscribe((res) => console.log(res));
     this.basicData = {
       labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho'],
       datasets: [
-          {
-              label: 'My First dataset',
-              backgroundColor: '#42A5F5',
-              data: [65, 59, 80, 81, 56, 55, 40]
-          }
+        { label: 'My First dataset', backgroundColor: '#42A5F5', data: [65, 59, 80, 81, 56, 55, 40] }
       ]
     };
   }
 
-  createUrl = () => {
+    createUrl = () => {
     this.isLoading = true;
     if (this.formUrl.invalid) return;
-    this.encurtadorService.createUrl(this.formUrl.value).subscribe((res) => {
-      this.url = res.shorty;
-      console.log(this.url);
-      this.isLoading = false;
-      this.items$ = this.encurtadorService.getUrls();
-    })
+    const value = this.formUrl.value;
+    if (this.proccess) {
+      this.proccess = false;
+      this.encurtadorService.updateUrl(value.id, value).subscribe((res) => res);
+    } else {
+      this.encurtadorService.createUrl(value).subscribe((res) => this.url = res.shorty);
+    }
+    this.items$ = this.encurtadorService.getUrls().pipe(finalize(() => this.proccess = false));
+    this.isLoading = false;
   }
 
-  deleteUrl = (event: any, shorty: string) => {
-    this.confirmationService.confirm({
-      target: event.target,
-      message: 'Vai appagar esse URL',
-      icon: 'pi pi-exclamation-triangle',
-      accept: () => {
-        console.log('YES => ', shorty);
-        this.encurtadorService.removeUrl(shorty).subscribe((res) => {
-          this.items$ = this.encurtadorService.getUrls();
-        })
-      }
-  });
+  editURL = (item: any) => {
+    this.proccess = true;
+    this.formUrl.patchValue({ url: item.url, shorty: item.shorty, id: item._id });
+    const config: ScrollToConfigOptions = { offset: 20, duration: 650, target: 'url', easing: 'easeOutElastic', };
+    this.scrollToService.scrollTo(config);
+  }
+  deleteUrl = (shorty: string) => {
+    this.encurtadorService.removeUrl(shorty).subscribe(() => this.items$ = this.encurtadorService.getUrls());
   }
 
-  loadForm = () => {
-    this.formUrl = this.fb.group({ 'url': ['', [Validators.required]]})
+  reverseButton = () => {
+    this.proccess = false;
+    this.formUrl.reset();
   }
+
+  loadForm = () => this.formUrl = this.fb.group({ 'url': ['', [Validators.required]], 'shorty': [''], 'id': [''] });
   clear = (table: Table) => table.clear();
+  applyFilterGlobal = (event: any, stringVal: string) => {
+    this.dt.filterGlobal((event.target as HTMLInputElement).value, stringVal);
+  }
 }

@@ -16,6 +16,10 @@ const app: Routes = [
       {
         path: 'produtos',
         loadChildren: () => import('@modules/produtos/produtos.module').then(m => m.ProdutosModule)
+      },
+      {
+        path: 'aplicativo',
+        loadChildren: () => import('@modules/aplicativo/aplicativo.module').then(m => m.AplicativoModule)
       }
     ]
   }

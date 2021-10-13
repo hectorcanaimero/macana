@@ -1,12 +1,13 @@
 <main>
-  <app-navbar></app-navbar>
+  <app-navbar (active)="activeSidebar($event)"></app-navbar>
   <div class="section">
-    <div class="sidebar">
-      <app-sidebar></app-sidebar>
+    <div class="sidebar" [ngClass]="active ? 'short' : 'all'">
+      <app-sidebar [value]="active"></app-sidebar>
     </div>
-    <div class="painel">
-      <p-scrollPanel [style]="{width: '100%', height: '100%'}">
-        <div class="py-4">
+    <div class="painel" [ngClass]="active ? 'short2' : 'all2'">
+      <app-bread></app-bread>
+      <p-scrollPanel [style]="{width: '100%', height: '90%'}">
+        <div class="pb-4">
           <router-outlet></router-outlet>
         </div>
       </p-scrollPanel>

@@ -1,6 +1,6 @@
 section {
+  background-color: rgb(128, 144, 150);
   .auth {
-    background-color: #fafafa;
     min-height: 100vh;
     display: flex;
     flex: row;
@@ -10,5 +10,8 @@ section {
       background-color: #fafafa;
       padding: 2rem;
     }
+  }
+  .p-card .p-component {
+    border-radius: 10px !important;
   }
 }

@@ -13,6 +13,10 @@ const app: Routes = [
         path: 'relatorio',
         loadChildren: () => import('./pages/relatorio/relatorio.module').then(m => m.RelatorioModule)
       },
+      {
+        path: 'logs',
+        loadChildren: () => import('./pages/logs/logs.module').then(m => m.LogsModule)
+      },
     ]
   }
 ];

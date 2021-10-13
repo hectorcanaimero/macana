@@ -20,9 +20,8 @@ export class EncurtadorService {
     return this.http.get<any>(`${url}/url`).pipe(map(res => res.items))
   }
 
-  createUrl = (data: Urls): Observable<Urls> => {
-    return this.http.post<Urls>(`${url}/url`, data)
-  }
+  createUrl = (data: Urls): Observable<Urls> => this.http.post<Urls>(`${url}/url`, data);
+  updateUrl = (id: string, data: Urls): Observable<Urls> => this.http.put<Urls>(`${url}/url/${id}`, data);
 
   removeUrl = (shorty: string) => this.http.delete(`${url}/url/${shorty}`);
 }

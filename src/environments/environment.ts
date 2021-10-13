@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  api: 'http://173.230.137.242:6970/api/v1'
+  api: 'https://api.cndr.me/api/v1'
 };
 
 /*

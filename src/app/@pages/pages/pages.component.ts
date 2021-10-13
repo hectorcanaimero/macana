@@ -7,10 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PagesComponent implements OnInit {
 
+  active = false;
   constructor() { }
 
   ngOnInit(): void {
 
   }
 
+  activeSidebar = (ev: any) => this.active = ev;
 }

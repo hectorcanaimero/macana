@@ -2,17 +2,24 @@
   <div class="auth">
     <div class="container">
       <div class="row justify-content-center">
-        <div class="col-md-5 col-lg-4"></div>
-        <div class="col-md-5 col-lg-4">
-          <p-card>
+        <div class="col-md-9 col-xl-5">
+          <ng-lottie
+            width="100%" height="400px"
+            containerClass="moving-box another-class"
+            [options]="options">
+          </ng-lottie>
+        </div>
+        <div class="col-md-6 col-xl-4 align-self-center">
+          <p-card class="round">
             <form [formGroup]="isRecovery ? formRecovery : formLogin">
               <div class="mb-3">
                 <input id="email" type="email" placeholder="E-mail" pInputText formControlName="email">
               </div>
               <div class="mb-3">
                 <input id="password" type="password" placeholder="Senha" pInputText
-                  formControlName="password">
+                  formControlName="password" (keyup.enter)="submit()">
               </div>
+              <p class="mb-2 text-danger text-center text-italic" *ngIf="message" [innerHTML]="message"></p>
               <div class="mb-2">
                 <button pButton type="button" class="w-100" (click)="submit()">
                   <p class="text-center mb-0 w-100">

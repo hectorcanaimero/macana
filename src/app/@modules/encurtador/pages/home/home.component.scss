@@ -5,6 +5,13 @@
   }
 }
 
+td {
+  a {
+    text-decoration: none !important;
+  }
+}
+
+
 @keyframes p-progress-spinner-color {
   100%,
   0% { stroke: #d62d20; }
